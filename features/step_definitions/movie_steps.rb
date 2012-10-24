@@ -34,11 +34,18 @@ When /I (un)?check the following ratings: (.*)/ do |uncheck, rating_list|
   #   "When I uncheck..." steps in lines 89-95 of web_steps.rb
 end
 
-#Then /^(?:|I )should see the following movies: (.*)/ do |movie_list|
+#Then /^(?:|I )see the following movies: (.*)/ do |movie_list|
 #  movie_list.split(/[\s,]+/).each { |movie| Then I should see movie }
 #end
 
-#Then /^(?:|I )should not see the following movies: (.*)/ do |movie_list|
+#Then /^(?:|I )do not see the following movies: (.*)/ do |movie_list|
 #  movie_list.split(/[\s,]+/).each { |movie| Then I should see movie }
 #end
 
+Then /I should see all of the movies/ do
+  if page.respond_to? :should
+    page.all('table#movies tbody tr').count.should == 10
+  else
+    assert page.all('table#movies tbody tr').count.should == 10
+  end
+end

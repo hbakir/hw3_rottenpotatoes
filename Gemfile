@@ -12,7 +12,6 @@ group :development, :test do
   gem 'database_cleaner'
   gem 'capybara'
   gem 'launchy'
-  gem 'rspec'
 end
 group :test do
   gem 'cucumber-rails'
